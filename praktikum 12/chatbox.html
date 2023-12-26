@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        Hello Kuy
+    </div>
+    <div class="ruang-pesan" id="ruang-pesan">
+        <div class="isian">
+        </div>
+    </div>
+    <div class="footer">
+            <input type="text" placeholder="Ketik pesan..." class="input-pesan" id="pesan-input">
+            <button onclick="kirimPesan()" class="btn-kirim">Kirim</button>
+    </div>
+
+    <script>
+         function kirimPesan() {
+            var pesanInput = document.getElementById('pesan-input');
+            var ruangPesan = document.getElementById('ruang-pesan');
+
+            if (pesanInput.value !== "") {
+                var pesanBaru = document.createElement('div');
+                pesanBaru.className = 'isian';
+                pesanBaru.textContent = pesanInput.value;
+                ruangPesan.appendChild(pesanBaru);
+
+                pesanInput.value = "";
+
+                ruangPesan.scrollTop = ruangPesan.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>

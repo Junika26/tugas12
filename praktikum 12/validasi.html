@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        Form Validation
+    </div>
+    <div class="form-container">
+        <form id="myForm" onsubmit="return validateForm()">
+        <table align="center" style="margin-top: 10px;">
+            <tr>
+                <th>Nama Pelanggan</th>
+                <th>:</th>
+                <td>
+                    <input type="text" id="namaPelanggan" name="namaPelanggan" placeholder="Masukkan Nama">
+                </td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <th>:</th>
+                <td>
+                    <input type="email" id="email" name="email" placeholder="Masukkan Email">
+                </td>
+            </tr>
+            <tr>
+                <th>Jam Keberangkatan</th>
+                <th>:</th>
+                <td>
+                    <input type="time" id="jamKeberangkatan" name="jamKeberangkatan">
+                </td>
+            </tr>
+            <tr>
+                <th>Tujuan Keberangkatan</th>
+                <th>:</th>
+                <td>
+                    <input type="text" id="tujuanKeberangkatan" name="tujuanKeberangkatan">
+                </td>
+            </tr>
+            <tr>
+                <th>Jumlah Tiket</th>
+                <th>:</th>
+                <td>
+                    <input type="text" id="jumlahTiket" name="jumlahTiket">
+                </td>
+            </tr>
+        </table>
+            <br>
+            <button type="submit" style="border-radius: 10px;margin-left: 200px;height: 30px;width: 100px;">Submit</button>
+        </form>
+        <div id="error-message" class="error"></div>
+        <div id="result-container"></div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var namaPelanggan = document.getElementById('namaPelanggan').value;
+            var email = document.getElementById('email').value;
+            var jamKeberangkatan = document.getElementById('jamKeberangkatan').value;
+            var tujuanKeberangkatan = document.getElementById('tujuanKeberangkatan').value;
+            var jumlahTiket = document.getElementById('jumlahTiket').value;
+
+            var errorMessage = document.getElementById('error-message');
+            errorMessage.innerHTML = "";
+
+            // Validasi Nama Pelanggan
+            if (namaPelanggan.trim() === "" || namaPelanggan.length > 30) {
+                errorMessage.innerHTML += "Nama Pelanggan tidak valid. ";
+                document.getElementById('namaPelanggan').style.borderColor = 'red';
+            } else {
+                document.getElementById('namaPelanggan').style.borderColor = '';
+            }
+
+            // Validasi Email
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorMessage.innerHTML += "Email tidak valid. ";
+                document.getElementById('email').style.borderColor = 'red';
+            } else {
+                document.getElementById('email').style.borderColor = '';
+            }
+
+            // Validasi Jam Keberangkatan
+            var jamRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+            if (!jamRegex.test(jamKeberangkatan)) {
+                errorMessage.innerHTML += "Jam Keberangkatan tidak valid. ";
+                document.getElementById('jamKeberangkatan').style.borderColor = 'red';
+            } else {
+                document.getElementById('jamKeberangkatan').style.borderColor = '';
+            }
+
+            // Validasi Tujuan Keberangkatan
+            if (tujuanKeberangkatan.trim() === "") {
+                errorMessage.innerHTML += "Tujuan Keberangkatan tidak valid. ";
+                document.getElementById('tujuanKeberangkatan').style.borderColor = 'red';
+            } else {
+                document.getElementById('tujuanKeberangkatan').style.borderColor = '';
+            }
+
+            // Validasi Jumlah Tiket
+            var jumlahTiketInt = parseInt(jumlahTiket);
+            if (isNaN(jumlahTiketInt) || jumlahTiketInt < 1 || jumlahTiketInt > 10) {
+                errorMessage.innerHTML += "Jumlah Tiket tidak valid (harus bilangan bulat antara 1 - 10). ";
+                document.getElementById('jumlahTiket').style.borderColor = 'red';
+            } else {
+                document.getElementById('jumlahTiket').style.borderColor = '';
+            }
+
+            // Tampilkan hasil atau pesan error
+            if (errorMessage.innerHTML === "") {
+                displayResult(namaPelanggan, email, jamKeberangkatan, tujuanKeberangkatan, jumlahTiketInt);
+            } else {
+                return false; // Menghentikan pengiriman form jika terdapat kesalahan
+            }
+        }
+
+        function displayResult(namaPelanggan, email, jamKeberangkatan, tujuanKeberangkatan, jumlahTiket) {
+            var resultContainer = document.getElementById('result-container');
+            resultContainer.innerHTML = "<h2>Form Data:</h2>";
+            resultContainer.innerHTML += "<p><strong>Nama Pelanggan:</strong> " + namaPelanggan + "</p>";
+            resultContainer.innerHTML += "<p><strong>Email:</strong> " + email + "</p>";
+            resultContainer.innerHTML += "<p><strong>Jam Keberangkatan:</strong> " + jamKeberangkatan + "</p>";
+            resultContainer.innerHTML += "<p><strong>Tujuan Keberangkatan:</strong> " + tujuanKeberangkatan + "</p>";
+            resultContainer.innerHTML += "<p><strong>Jumlah Tiket:</strong> " + jumlahTiket + "</p>";
+        }
+    </script>
+</body>
+</html>

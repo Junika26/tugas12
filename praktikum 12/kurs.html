@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1px solid black">
+        <h1>Kurs mata uang</h1>
+        <tr>
+            <td>              
+                <label for="">Masukan nilai</label><br>
+                <input type="number" id="nilai1"><br>
+            </td>
+            <td>
+                <label for="">valas</label>
+                <select name="" id="operator" onclick="hitung()">
+                    <option value="dolar">Dolar us</option>
+                    <option value="dolarsingapur">dolar singapur</option>
+                    <option value="ringgitmalaysia">ringgit malaysia</option>
+                    <option value="yen">Yen jepang</option>
+                    <option value="euro">Euro</option>
+                    <option value="riyal">Riyal arab saudi</option>
+                </select>
+            </td>
+            <td>
+                <label for="">Masukan nilai rupiah</label><br>
+                <input type="number" id="nilai2"><h5 id="output"></h5><br>
+            </td>
+        </tr>
+    </table>
+<script>
+    function hitung() {
+    const  nilai1 = parseInt(document.getElementById("nilai1").value);
+    const  nilai2 = parseInt(document.getElementById("nilai2").value);
+    const operator = document.getElementById("operator").value;
+    let hasil = 0;
+
+    if(operator == 'dolar'){  
+         hasil = 9.915;
+    } else if(operator = 'dolarsingapur'){
+         hasil = 13.472;
+    } else if(operator = 'ringgitmalaysia'){
+         hasil = 874;
+    } else if(operator = 'yen'){
+         hasil = 120;
+    } else if(operator = 'euro'){
+         hasil = 15.888;
+    } else {
+         hasil = 3592;
+    } 
+    document.getElementById('output').innerHTML = hasil;
+}
+</script>
+</body>
+</html>

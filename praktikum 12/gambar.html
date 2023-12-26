@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Image Picker</title>
+</head>
+<body>
+  <div class="container">
+    <label for="imageSelector">Pilih Gambar:</label>
+    <select id="imageSelector" onchange="displayImage()">
+      <option value="gambar1" >Gambar 1</option>
+      <option value="gambar2" >Gambar 2</option>
+      <option value="gambar3" >Gambar 3</option>
+      <option value="gambar4" >Gambar 4</option>
+      <option value="gambar5" >Gambar 5</option>
+      <option value="gambar6" >Gambar 6</option>
+      <option value="gambar7" >Gambar 7</option>
+    </select>
+
+    <div class="image-container">
+      
+      <img id="selectedImage" src="3fac9694-1856-4506-85e9-1efab27099bd.jpg" alt="Selected Image" width="200px">
+      <img id="selectedImage" src="17 Fondos de pantalla de Disney para personalizar tu celular.jpg" alt="Selected Image" width="200px">
+      <img id="selectedImage" src="28074e44-b51c-4c99-9c94-321741625f68.jpg" alt="Selected Image" width="200px"> 
+      <img id="selectedImage" src="Aquamarine Is The Color Of March_ Photo Diary.jpg" alt="Selected Image" width="200px">
+      <img id="selectedImage" src="Image posted by HeteropodaMaxima.jpg" alt="Selected Image" width="200px">
+      <img id="selectedImage" src="Lady Tedra.jpg" alt="Selected Image" width="200px">
+      <img id="selectedImage" src="Meet The Orange County Mermaid From California!.jpg" alt="Selected Image" width="200px">  
+
+    </div>
+
+    <div id="alertBox" class="alert-box"></div>
+  </div>
+
+  <script>
+    function displayImage() {
+  var imageSelector = document.getElementById("imageSelector");
+  var selectedImage = document.getElementById("selectedImage");
+  var alertBox = document.getElementById("alertBox");
+
+  var selectedOption = imageSelector.options[imageSelector.selectedIndex];
+  var imageName = selectedOption.text;
+  var imageUrl = "path/to/your/images/" + selectedOption.value + "Lady Tedra.jpg"; // Ganti dengan path yang sesuai
+
+  selectedImage.src = imageUrl;
+
+  alertBox.innerHTML = "Nama File Gambar: " + imageName;
+  alertBox.style.display = "block";
+}
+
+  </script>
+</body>
+</html>
